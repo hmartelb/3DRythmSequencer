@@ -1,0 +1,35 @@
+/* SCENE */
+
+body {
+	/*font-family: Monospace;*/
+	position: relative;
+	/*background-color: #f0f0f0;*/
+	height: 100%;
+	width: 100%;
+	overflow: hidden;
+}
+#oldie { background-color: #ddd !important }
+
+#mycanvas canvas {
+  /* force the canvas to fill out the entire area */
+  width: 	100% !important; 
+  height: 	100% !important; 
+  z-index: 	-1; 
+}
+
+.on-top-container{
+	position: absolute;
+    width: 100%;
+    height: 100%;
+    max-width: 300px;
+    max-height: 350px;
+	border-radius: 5px;
+	background-color: #bdc3c7;
+    /*background-color: #777;*/
+    border: 1px solid #333;
+    opacity: 0.75;
+}
+
+.on-top-container:hover{
+	opacity: 1.0;
+}

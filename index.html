@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset=utf-8>
+		<title>3D Rythm Sequencer</title>
+		<style>
+			body { margin: 0; overflow: hidden;}
+			canvas { width: 100%; height: 100%;}
+		</style>
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+		<link rel="stylesheet" type="text/css" href="css/style.css">
+	</head>
+	<body>
+		<div class="loginbox" id="login-row">
+			<div class="login-title">
+				<h3 id="welcome-title">Welcome to VCE Application!</h3>
+			</div>
+			<div class="login-form">
+				<p id="login-text">Please enter your login details below:</p>
+			<textarea id="login-name" rows="1" placeholder="Your username"></textarea>
+			<textarea id="login-room" rows="1" placeholder="Your room"></textarea>	
+			<p id="login-warning" style="display:none">* Please specify correct Username/Room</p>
+				<button id="login-button">Login</button>
+			</div>
+			<div class="login-footer">
+				<p id="credits">Created by Héctor Martel and Alejandro Puig. <br>Virtual Communication Environments, Universitat Pompeu Fabra (Barcelona) <br><br><i>Version: 1.0.0 - Last update: 15/03/2017</i></p>
+			</div>
+		</div>
+		<div class="container" id="UI-container" style="position:absolute;left:2%;bottom:0px; display: none;">
+			<div id="icons-container" style="position: fixed;top: 15px;right: 10px;">
+				<img src="img/cancel-icon.png" id="clear-icon" class="UI-icon"> 
+				<img src="img/undo-arrow.png" id="undo-icon" class="UI-icon">
+				<img src="img/redo-arrow.png" id="redo-icon" class="UI-icon" style="display: none;">
+	  			<img src="img/metronome.png" id="metronome-icon" class="UI-icon">
+	  			<img src="img/percussion_blue.png" id="kick-icon" class="UI-icon">
+	  			<img src="img/percussion-clap_blue.png" id="clap-icon" class="UI-icon">
+	  			<img src="img/percussion-cymbal_blue.png" id="hihat-icon" class="UI-icon">
+	  			<img src="img/note.png" id="note-icon" class="UI-icon">
+				<select id="note-sel" class="UI-selector">
+					<option value="a">A</option>
+					<option value="b">B</option>
+					<option value="c">C</option>
+					<option value="d">D</option>
+					<option value="e">E</option>
+					<option value="f">F</option>
+					<option value="g">G</option>
+				</select>
+
+				<select id="radius-sel" class="UI-selector">
+					<option value="10">10</option>
+					<option value="20">20</option>
+					<option value="40">40</option>
+					<option value="50">50</option>
+					<option value="60">60</option>
+					<option value="80">80</option>
+					<option value="100">100</option>
+				</select>
+	 		</div>
+	 		<div id="chat-container">
+	  		<img src="img/chat2.png" id="chat-icon" class="UI-icon" style="position:absolute;left:2%;bottom:15px;width:80px;height:80px;cursor:pointer">
+	  		<div class="row" id="chat-row" style="display: none">
+				<div class="col-md-3" id="left-row" style="display:none"> 
+					<div class="room-name">
+						<span class="glyphicon glyphicon-pencil" id="edit-rooms-button"></span>
+		  				<p id="room-list-title">Room List</p>
+		  			</div>
+					<ul class="nav nav-pills nav-stacked" id="room-list" style="background-image: url( img/columns-background.jpg)">
+					</ul>
+				</div>
+		  		<div class="chatbox col-md-6">
+		  			<div class="roombox" id="roombox">
+		  				<div class="room-name">
+		  					<span class="glyphicon glyphicon-volume-up" id="sound-on-button" ></span>
+		  					<span class="glyphicon glyphicon-volume-off" id="sound-mute-button" style="display:none"></span>
+		  					<p id="room-title">This is the room name</p>
+		  					<span class="glyphicon glyphicon-th-list pull-right" id="list-button"></span>
+		  					<span class="glyphicon glyphicon-minus pull-right" id="minus-button"></span>
+		  				</div>
+		  			</div>
+					<div class="chatlogs" id="chat-logs" style="background-image: url(img/chat-background.jpg)">
+					</div>
+			    	<div class="chat-form">
+		  				<textarea id="text-input"></textarea>
+		  				<button id="send-button">Send</button>
+		  			</div>
+		  		</div>
+		  		<div id="right-row" style="display:none"> 
+		  			<div class="room-name">
+		  				<p id="list-title">Connected Users</p>
+		  			</div>
+       			<div id="connected-list" class="connected-list" style="background-image: url( img/columns-background.jpg)">
+                	<ul id="user-list">
+                	<li class="connected-element" id="user-display-template">
+                	</li>
+                	</ul>
+              	</div>
+		  	</div>
+	  		</div>
+	  		</div>
+	  	</div>
+		<div id="mycanvas"></div>
+
+		<!-- Scripts below -->
+		<script type="text/javascript" src="js/sillyclient.js"></script>
+		<script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
+		<script type="text/javascript" src="js/bootstrap.js"></script>
+		<script type="text/javascript" src="js/three.js"></script>
+		<script type="text/javascript" src="js/OrbitControls.js"></script>
+		<script type="text/javascript" src="js/loaders/DDSLoader.js"></script>
+		<script type="text/javascript" src="js/loaders/MTLLoader.js"></script>
+		<script type="text/javascript" src="js/loaders/OBJLoader.js"></script>
+
+		<script type="text/javascript" src="js/login.js"></script>
+		<script type="text/javascript" src="js/chat.js"></script>
+		<script type="text/javascript" src="js/audio.js"></script>
+		<script type="text/javascript" src="js/controls.js"></script>		
+		<script type="text/javascript" src="js/data.js"></script>
+		<script type="text/javascript" src="js/scene.js"></script>
+		<script type="text/javascript" src="js/server.js"></script>
+		<script type="text/javascript" src="js/application.js"></script>
+	</body>
+</html>
